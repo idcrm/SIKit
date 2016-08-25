@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +17,205 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jNI-Zh-56n" customClass="SIInput">
+                                <rect key="frame" x="20" y="28" width="240" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="5WV-Kn-geC"/>
+                                    <constraint firstAttribute="width" constant="240" id="SBD-6o-8Ai"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="requiredLevelColor">
+                                        <color key="value" red="1" green="0.1092419884" blue="0.080298297099999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="labelTitle" value="Integer"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="szI-TB-QAO" customClass="SIInput">
+                                <rect key="frame" x="304" y="28" width="240" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="207-de-i1w"/>
+                                    <constraint firstAttribute="height" constant="50" id="LWW-WD-OAo"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="requiredLevelColor">
+                                        <color key="value" red="1" green="0.1092419884" blue="0.080298297099999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="labelTitle" value="Double"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="844-PD-b1z" customClass="SIInput">
+                                <rect key="frame" x="20" y="98" width="240" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="OVI-P2-4VG"/>
+                                    <constraint firstAttribute="width" constant="240" id="orQ-YB-dTm"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="labelTitle" value="Text"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="requiredLevelColor">
+                                        <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KGN-6G-che" customClass="SIInput">
+                                <rect key="frame" x="304" y="98" width="240" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="85U-0o-tO2"/>
+                                    <constraint firstAttribute="width" constant="240" id="qso-sE-E0W"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="labelTitle" value="Phone"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="requiredLevelColor">
+                                        <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gkl-8o-TN2" customClass="SIInput">
+                                <rect key="frame" x="20" y="168" width="240" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="KNr-Bi-VcA"/>
+                                    <constraint firstAttribute="width" constant="240" id="Z8m-cL-Y3f"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="labelTitle" value="URL"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gxs-nv-93k" customClass="SIInput">
+                                <rect key="frame" x="304" y="168" width="240" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="XM4-mA-CZ5"/>
+                                    <constraint firstAttribute="width" constant="240" id="uCC-h8-5OQ"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="labelTitle" value="Email"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9XI-P6-a8M" customClass="SIInput">
+                                <rect key="frame" x="20" y="238" width="240" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="drT-AQ-D2U"/>
+                                    <constraint firstAttribute="width" constant="240" id="iui-Dh-FjM"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="labelTitle" value="Password"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="requiredLevelColor">
+                                        <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i3s-m1-CFB" customClass="SIInput">
+                                <rect key="frame" x="304" y="238" width="240" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="42I-FJ-rBO"/>
+                                    <constraint firstAttribute="width" constant="240" id="Dre-ZG-i5O"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="labelTitle" value="Date"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="requiredLevelColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pBH-8p-Jgc" customClass="SIInput">
+                                <rect key="frame" x="20" y="308" width="240" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="XDN-El-lAe"/>
+                                    <constraint firstAttribute="height" constant="50" id="tLp-Me-17o"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="labelTitle" value="DateTime"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="requiredLevelColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L4N-sN-mPA" customClass="SIInput">
+                                <rect key="frame" x="304" y="308" width="240" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Ijy-tk-00R"/>
+                                    <constraint firstAttribute="width" constant="240" id="Ve4-sb-zdx"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="labelTitle" value="Countdown"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="requiredLevelColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DkS-AC-AgO" customClass="SIInput">
+                                <rect key="frame" x="20" y="378" width="240" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="eqL-XN-Swp"/>
+                                    <constraint firstAttribute="height" constant="50" id="sMI-F0-dcT"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="labelTitle" value="Time"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="requiredLevelColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="DkS-AC-AgO" firstAttribute="top" secondItem="pBH-8p-Jgc" secondAttribute="bottom" constant="20" id="0oA-95-h9E"/>
+                            <constraint firstItem="9XI-P6-a8M" firstAttribute="leading" secondItem="gkl-8o-TN2" secondAttribute="leading" id="3Sp-LV-EG7"/>
+                            <constraint firstItem="gkl-8o-TN2" firstAttribute="top" secondItem="844-PD-b1z" secondAttribute="bottom" constant="20" id="CK6-md-9xQ"/>
+                            <constraint firstItem="i3s-m1-CFB" firstAttribute="top" secondItem="9XI-P6-a8M" secondAttribute="top" id="CQc-4a-bh3"/>
+                            <constraint firstItem="844-PD-b1z" firstAttribute="leading" secondItem="jNI-Zh-56n" secondAttribute="leading" id="Fgl-VJ-dfw"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="jNI-Zh-56n" secondAttribute="leading" id="G7V-gM-X9S"/>
+                            <constraint firstItem="gxs-nv-93k" firstAttribute="top" secondItem="gkl-8o-TN2" secondAttribute="top" id="JD5-Mi-dU9"/>
+                            <constraint firstItem="pBH-8p-Jgc" firstAttribute="top" secondItem="9XI-P6-a8M" secondAttribute="bottom" constant="20" id="JGd-lr-qJQ"/>
+                            <constraint firstItem="9XI-P6-a8M" firstAttribute="top" secondItem="gkl-8o-TN2" secondAttribute="bottom" constant="20" id="T7Z-ch-SwW"/>
+                            <constraint firstItem="i3s-m1-CFB" firstAttribute="leading" secondItem="gxs-nv-93k" secondAttribute="leading" id="VBP-TB-svA"/>
+                            <constraint firstItem="szI-TB-QAO" firstAttribute="top" secondItem="jNI-Zh-56n" secondAttribute="top" id="Znn-Sc-Hyi"/>
+                            <constraint firstItem="jNI-Zh-56n" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="bmS-Vg-JP5"/>
+                            <constraint firstItem="L4N-sN-mPA" firstAttribute="leading" secondItem="i3s-m1-CFB" secondAttribute="leading" id="dNv-8o-rje"/>
+                            <constraint firstItem="gkl-8o-TN2" firstAttribute="leading" secondItem="844-PD-b1z" secondAttribute="leading" id="f16-t0-0fy"/>
+                            <constraint firstItem="gxs-nv-93k" firstAttribute="leading" secondItem="gkl-8o-TN2" secondAttribute="trailing" constant="44" id="k6c-v6-gal"/>
+                            <constraint firstItem="KGN-6G-che" firstAttribute="top" secondItem="844-PD-b1z" secondAttribute="top" id="lsU-lX-WVj"/>
+                            <constraint firstItem="DkS-AC-AgO" firstAttribute="leading" secondItem="pBH-8p-Jgc" secondAttribute="leading" id="mME-5H-92T"/>
+                            <constraint firstItem="844-PD-b1z" firstAttribute="top" secondItem="jNI-Zh-56n" secondAttribute="bottom" constant="20" id="nwz-lg-5pv"/>
+                            <constraint firstItem="szI-TB-QAO" firstAttribute="leading" secondItem="jNI-Zh-56n" secondAttribute="trailing" constant="44" id="qXf-D0-rVa"/>
+                            <constraint firstItem="L4N-sN-mPA" firstAttribute="top" secondItem="pBH-8p-Jgc" secondAttribute="top" id="rcF-CH-Ndu"/>
+                            <constraint firstItem="KGN-6G-che" firstAttribute="leading" secondItem="szI-TB-QAO" secondAttribute="leading" id="vh0-9f-ZJ2"/>
+                            <constraint firstItem="KGN-6G-che" firstAttribute="leading" secondItem="844-PD-b1z" secondAttribute="trailing" constant="44" id="zCj-Q8-oOy"/>
+                            <constraint firstItem="pBH-8p-Jgc" firstAttribute="leading" secondItem="9XI-P6-a8M" secondAttribute="leading" id="zwE-hI-F1i"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="zCj-Q8-oOy"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="inputCountDown" destination="L4N-sN-mPA" id="clb-Gd-O3p"/>
+                        <outlet property="inputDate" destination="i3s-m1-CFB" id="6cb-7f-GxT"/>
+                        <outlet property="inputDateTime" destination="pBH-8p-Jgc" id="UmL-90-49q"/>
+                        <outlet property="inputDouble" destination="szI-TB-QAO" id="8fr-e0-7ea"/>
+                        <outlet property="inputEmail" destination="gxs-nv-93k" id="Ihe-Zg-fcu"/>
+                        <outlet property="inputInteger" destination="jNI-Zh-56n" id="kdF-TI-BIF"/>
+                        <outlet property="inputPassword" destination="9XI-P6-a8M" id="FZO-F1-g9M"/>
+                        <outlet property="inputPhone" destination="KGN-6G-che" id="GyF-SQ-C4F"/>
+                        <outlet property="inputText" destination="844-PD-b1z" id="XWb-bd-aFt"/>
+                        <outlet property="inputTime" destination="DkS-AC-AgO" id="Tm7-9o-EO6"/>
+                        <outlet property="inputUrl" destination="gkl-8o-TN2" id="Li9-NX-aKK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="532" y="445"/>
         </scene>
     </scenes>
 </document>
