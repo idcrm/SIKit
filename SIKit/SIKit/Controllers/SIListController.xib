@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SIListController">
             <connections>
+                <outlet property="searchBar" destination="kzG-hp-C77" id="Nyf-MN-Cfx"/>
                 <outlet property="tableView" destination="VqB-ca-1rv" id="p4P-lM-TTz"/>
                 <outlet property="view" destination="iN0-l3-epB" id="YMY-rD-0rb"/>
             </connections>

@@ -126,6 +126,11 @@
         [self addSubview:self.buttonInputTrigger];
         [self.buttonInputTrigger addTarget:self action:@selector(inputButtonTap:) forControlEvents:UIControlEventTouchUpInside];
     }
+    
+    if (self.inputValue) {
+        [self.buttonInputTrigger setTitle:self.inputValue forState:UIControlStateNormal];
+    }
+    
     [self.buttonInputTrigger setFrame:CGRectMake(self.padding, self.titleLabelHeight + 5, self.frame.size.width, self.frame.size.height - self.titleLabelHeight - 5)];
 }
 
@@ -426,6 +431,13 @@
             break;
     }
     return mode;
+}
+
+-(void)updateInputValue:(NSString *)value andKey:(NSString *)key {
+    self.inputValue = value;
+    self.inputKey = key;
+    
+    [self setNeedsDisplay];
 }
 
 @end

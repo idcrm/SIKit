@@ -194,6 +194,30 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="l2R-kq-sTv">
+                                <rect key="frame" x="20" y="506" width="728" height="498"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Kk7-uS-jX3">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="NTO-XN-LK1">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="XNN-Yx-RQj"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="NGE-C1-Lhc"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -208,9 +232,12 @@
                             <constraint firstItem="gxs-nv-93k" firstAttribute="top" secondItem="gkl-8o-TN2" secondAttribute="top" id="JD5-Mi-dU9"/>
                             <constraint firstItem="pBH-8p-Jgc" firstAttribute="top" secondItem="9XI-P6-a8M" secondAttribute="bottom" constant="20" id="JGd-lr-qJQ"/>
                             <constraint firstItem="RLh-jU-ESk" firstAttribute="leading" secondItem="DkS-AC-AgO" secondAttribute="trailing" constant="44" id="Lou-vM-Ivt"/>
+                            <constraint firstItem="l2R-kq-sTv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="MkT-c2-Nv2"/>
                             <constraint firstItem="9XI-P6-a8M" firstAttribute="top" secondItem="gkl-8o-TN2" secondAttribute="bottom" constant="20" id="T7Z-ch-SwW"/>
+                            <constraint firstItem="l2R-kq-sTv" firstAttribute="top" secondItem="x33-27-j6f" secondAttribute="bottom" constant="8" id="UKI-PV-gGj"/>
                             <constraint firstItem="i3s-m1-CFB" firstAttribute="leading" secondItem="gxs-nv-93k" secondAttribute="leading" id="VBP-TB-svA"/>
                             <constraint firstItem="RLh-jU-ESk" firstAttribute="top" secondItem="DkS-AC-AgO" secondAttribute="top" id="YtQ-9Y-7Jf"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="l2R-kq-sTv" secondAttribute="bottom" constant="20" id="Z69-jB-Ws0"/>
                             <constraint firstItem="szI-TB-QAO" firstAttribute="top" secondItem="jNI-Zh-56n" secondAttribute="top" id="Znn-Sc-Hyi"/>
                             <constraint firstItem="jNI-Zh-56n" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="bmS-Vg-JP5"/>
                             <constraint firstItem="L4N-sN-mPA" firstAttribute="leading" secondItem="i3s-m1-CFB" secondAttribute="leading" id="dNv-8o-rje"/>
@@ -219,6 +246,7 @@
                             <constraint firstItem="gxs-nv-93k" firstAttribute="leading" secondItem="gkl-8o-TN2" secondAttribute="trailing" constant="44" id="k6c-v6-gal"/>
                             <constraint firstItem="KGN-6G-che" firstAttribute="top" secondItem="844-PD-b1z" secondAttribute="top" id="lsU-lX-WVj"/>
                             <constraint firstItem="DkS-AC-AgO" firstAttribute="leading" secondItem="pBH-8p-Jgc" secondAttribute="leading" id="mME-5H-92T"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="l2R-kq-sTv" secondAttribute="trailing" id="mqu-tK-Qel"/>
                             <constraint firstItem="844-PD-b1z" firstAttribute="top" secondItem="jNI-Zh-56n" secondAttribute="bottom" constant="20" id="nwz-lg-5pv"/>
                             <constraint firstItem="x33-27-j6f" firstAttribute="trailing" secondItem="DkS-AC-AgO" secondAttribute="trailing" id="q28-CR-bQd"/>
                             <constraint firstItem="szI-TB-QAO" firstAttribute="leading" secondItem="jNI-Zh-56n" secondAttribute="trailing" constant="44" id="qXf-D0-rVa"/>
@@ -235,6 +263,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="formCollectionView" destination="l2R-kq-sTv" id="5p2-dV-kah"/>
                         <outlet property="inputCountDown" destination="L4N-sN-mPA" id="clb-Gd-O3p"/>
                         <outlet property="inputDate" destination="i3s-m1-CFB" id="6cb-7f-GxT"/>
                         <outlet property="inputDateTime" destination="pBH-8p-Jgc" id="UmL-90-49q"/>

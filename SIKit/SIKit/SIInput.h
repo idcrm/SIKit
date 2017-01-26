@@ -96,6 +96,17 @@ IB_DESIGNABLE @interface SIInput : UIView<UITextFieldDelegate, SIDateTimePickerC
  */
 @property (strong, nonatomic, nullable) IBInspectable UIColor * inputTextColor;
 
+/**
+ dateFormat
+ */
 @property (copy, nonnull) NSString * dateFormat;
+
+/**
+ Update the key/value of the input
+
+ @param value value to display
+ @param key value key
+ */
+- (void) updateInputValue:(NSString * _Nonnull)value andKey:(NSString * _Nullable)key;
 
 @end

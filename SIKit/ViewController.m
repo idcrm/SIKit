@@ -7,14 +7,17 @@
 //
 
 #import "ViewController.h"
-#import "SIInputText.h"
 #import "SIFormThemeManager.h"
+#import "SIInputCell.h"
 #import "SIListController.h"
 
-@interface ViewController ()<SIListControllerDelegate>
+@interface ViewController ()<SIListControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (strong, nonatomic) SIFormThemeManager * theme;
 @property (strong, nonatomic) SIListController *listController;
+
+@property (strong, nonatomic) IBOutlet UICollectionView *formCollectionView;
+@property (strong, nonatomic) NSArray *formModel;
 
 @end
 
@@ -23,6 +26,52 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    self.theme = [[SIFormThemeManager alloc] init];
+    
+    self.listController = [[SIListController alloc] init];
+    self.listController.delegate = self;
+    
+    NSMutableArray *list = [NSMutableArray array];
+    for (NSUInteger i = 0; i < 20; i++) {
+        [list addObject:@{@"title" : [NSString stringWithFormat:@"Account %ld", i]}];
+    }
+    self.listController.list = list;
+    
+    [self initInputView];
+    [self initInputCollection];
+}
+
+- (void) initInputCollection {
+    self.formModel = @[
+                       @{
+                           @"Label" : @"Subject",
+                           @"Type"  : @(SIInputTypeText),
+                           @"Value" : @"Hello World",
+                           },
+                       @{
+                           @"Label" : @"Account",
+                           @"Type"  : @(SIInputTypeList),
+                           @"Value" : @"Account 3",
+                           @"Required" :@true,
+                           @"Identifier" : @"myAccountList"
+                       },
+                       @{
+                           @"Label" : @"Option",
+                           @"Type"  : @(SIInputTypeOptions),
+                           @"Value" : @"Collective",
+                           @"ReadOnly" :@true,
+                           @"Options" : @[@{@"title": @"Professional", @"value" : @"1500000"},
+                                          @{@"title": @"Collective", @"value" : @"1500001"},
+                                          @{@"title": @"Particuler", @"value" : @"1500002"}
+                                          ]
+                           },
+                       ];
+    
+    [self.formCollectionView registerNib:[UINib nibWithNibName:@"SIInputCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"SIInputCell"];
+    [self.formCollectionView reloadData];
+}
+
+- (void) initInputView {
     [self.inputInteger setInputType:SIInputTypeInteger];
     [self.inputDouble setInputType:SIInputTypeDouble];
     [self.inputPhone setInputType:SIInputTypePhone];
@@ -53,18 +102,6 @@
     self.inputList.delegate = self;
     self.inputList.dataSource = self;
     self.inputList.identifier = @"myAccountList";
-    
-    self.theme = [[SIFormThemeManager alloc] init];
-    
-    self.listController = [[SIListController alloc] init];
-    self.listController.delegate = self;
-    
-    NSMutableArray *list = [NSMutableArray array];
-    for (NSUInteger i = 0; i < 20; i++) {
-        [list addObject:@{@"title" : [NSString stringWithFormat:@"Account %ld", i]}];
-    }
-    self.listController.list = list;
-
 }
 
 - (void)didReceiveMemoryWarning {
@@ -88,6 +125,7 @@
 
 -(void)listController:(SIListController *)controller didSelectItem:(id)item {
     NSLog(@"%@", item);
+    [self.inputList updateInputValue:item[@"title"] andKey:nil];
     [controller dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -110,9 +148,9 @@
 
 #pragma mark - CollectionView Delegate/DataSource
 
-/*
+
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 1;
+    return [self.formModel count];
 }
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -126,14 +164,45 @@
 }
 
 -(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString * identifier = @"input_identifier";
-    SIInputText * input = (SIInputText*)[collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-    if (!input) {
-        input = [[SIInputText alloc] init];
-    }
-    input.theme = self.theme;
+    SIInputCell * cell = (SIInputCell*)[collectionView dequeueReusableCellWithReuseIdentifier:@"SIInputCell" forIndexPath:indexPath];
     
-    return input;
+    NSDictionary *option  = self.formModel[indexPath.row];
+    
+    cell.input.inputType  = [option[@"Type"] integerValue];
+    cell.input.labelTitle = option[@"Label"];
+    cell.input.identifier = option[@"Identifier"];
+    [cell.input updateInputValue:option[@"Value"] andKey:nil];
+    
+    BOOL required = [option[@"Required"] boolValue];
+    BOOL readOnly = [option[@"ReadOnly"] boolValue];
+    
+    //Bar Color
+    if (readOnly) {
+        cell.input.requiredLevelColor = [UIColor clearColor];
+    }
+    else if (required) {
+        cell.input.requiredLevelColor = [UIColor redColor];
+    }
+    else {
+        cell.input.requiredLevelColor = [UIColor grayColor];
+    }
+    
+    cell.input.delegate = self;
+    cell.input.dataSource = self;
+    
+    //Options
+    switch (cell.input.inputType) {
+        case SIInputTypeOptions:
+            cell.input.options = option[@"Options"];
+            break;
+        case SIInputTypeList:
+        default:
+            break;
+    }
+    
+    
+    
+    return cell;
 }
-*/
+
 @end
