@@ -11,6 +11,15 @@
 
 @interface SIListController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
+@property (strong, nonatomic) IBOutlet UITableView * tableView;
+
 @property (strong, nonatomic) NSArray<NSDictionary *> * list;
+
+@property (strong, nonatomic) id<SIListControllerDelegate> delegate;
+
+/**
+ Trigger uitableview reloadData.
+ */
+- (void) refreshTableView;
 
 @end

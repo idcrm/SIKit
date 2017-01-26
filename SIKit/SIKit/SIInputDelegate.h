@@ -10,6 +10,7 @@
 #define SIInputDelegate_h
 
 @class SIInput;
+@class SIListController;
 
 @protocol SIInputDelegate <NSObject>
 
@@ -36,6 +37,15 @@
 
 -(BOOL) SIInputShouldReturn:(SIInput *)input;
 
+-(void) SIInput:(SIInput *)input OptionDidChange:(NSDictionary*)option;
+
+
+@end
+
+
+@protocol SIInputDataSource <NSObject>
+
+-(SIListController*) presentingViewControllerForInput:(SIInput *)input;
 
 @end
 

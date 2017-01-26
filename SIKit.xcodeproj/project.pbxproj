@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B40DFE181E38907500CC3BFD /* SIListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B40DFE171E38907500CC3BFD /* SIListController.xib */; };
 		B4249AEE1C86D3F9006A6F13 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B4249AED1C86D3F9006A6F13 /* main.m */; };
 		B4249AF11C86D3F9006A6F13 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4249AF01C86D3F9006A6F13 /* AppDelegate.m */; };
 		B4249AF41C86D3F9006A6F13 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4249AF31C86D3F9006A6F13 /* ViewController.m */; };
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B40DFE171E38907500CC3BFD /* SIListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SIListController.xib; sourceTree = "<group>"; };
 		B4249AE91C86D3F9006A6F13 /* SIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4249AED1C86D3F9006A6F13 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B4249AEF1C86D3F9006A6F13 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				B4BC4E821CEC5C2D009FF87F /* SIDateTimePickerControllerDelegate.h */,
 				B4A3C37B1CEDBD660079BED4 /* SIListController.h */,
 				B4A3C37C1CEDBD660079BED4 /* SIListController.m */,
+				B40DFE171E38907500CC3BFD /* SIListController.xib */,
 				B4A3C37E1CEDBD7F0079BED4 /* SIListControllerDelegate.h */,
 			);
 			path = Controllers;
@@ -323,6 +326,7 @@
 				B4249AFC1C86D3F9006A6F13 /* LaunchScreen.storyboard in Resources */,
 				B4249AF91C86D3F9006A6F13 /* Assets.xcassets in Resources */,
 				B4249AF71C86D3F9006A6F13 /* Main.storyboard in Resources */,
+				B40DFE181E38907500CC3BFD /* SIListController.xib in Resources */,
 				B49849B71CE1883800A1E759 /* SIInputBase.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

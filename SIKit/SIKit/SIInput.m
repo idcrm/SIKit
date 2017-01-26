@@ -62,6 +62,7 @@
 }
 
 -(void)awakeFromNib {
+    [super awakeFromNib];
     //Add touch gesture to auto focus on text input
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selfTap:)];
     tap.numberOfTapsRequired = 1;
@@ -72,10 +73,10 @@
 
 - (void)drawRect:(CGRect)rect {
     // Update required level color
-    [self initRequiredView];
+    [self _initRequiredView];
     
     //Update label
-    [self initLabelTitle];
+    [self _initLabelTitle];
     
     switch (self.inputType) {
         case SIInputTypeURL:
@@ -86,14 +87,16 @@
         case SIInputTypeDouble:
         case SIInputTypePassword:
             //Update input view
-            [self initTextbox];
+            [self _initTextbox];
             
             break;
         case SIInputTypeDate:
         case SIInputTypeDateAndTime:
         case SIInputTypeCountDownTimer:
         case SIInputTypeTime:
-            [self initButton];
+        case SIInputTypeList:
+        case SIInputTypeOptions:
+            [self _initButton];
             break;
         default:
             break;
@@ -102,7 +105,7 @@
 
 #pragma mark - Update view
 
-- (void) initTextbox {
+- (void) _initTextbox {
     if (self.inputTextField == nil) {
         self.inputTextField = [[UITextField alloc] init];
         [self addSubview:self.inputTextField];
@@ -112,10 +115,10 @@
     [self.inputTextField setText:self.inputValue];
     [self.inputTextField setTextColor:self.inputTextColor];
     [self.inputTextField setReturnKeyType:UIReturnKeyDone];
-    [self updateKeyboardTypeByInputType];
+    [self _updateKeyboardTypeByInputType];
 }
 
-- (void) initButton {
+- (void) _initButton {
     if (self.buttonInputTrigger == nil) {
         self.buttonInputTrigger = [UIButton buttonWithType:UIButtonTypeSystem];
         [self.buttonInputTrigger setTitleColor:self.inputTextColor forState:UIControlStateNormal];
@@ -126,7 +129,7 @@
     [self.buttonInputTrigger setFrame:CGRectMake(self.padding, self.titleLabelHeight + 5, self.frame.size.width, self.frame.size.height - self.titleLabelHeight - 5)];
 }
 
-- (void) updateKeyboardTypeByInputType {
+- (void) _updateKeyboardTypeByInputType {
     switch (self.inputType) {
         case SIInputTypeText:
             self.inputTextField.keyboardType = UIKeyboardTypeDefault;
@@ -155,7 +158,7 @@
 /**
  *  Check and create required view
  */
-- (void) initRequiredView {
+- (void) _initRequiredView {
     CGFloat requireViewWidth = 1.0f;
     if (self.requiredView == nil) {
         /* Initialize and add required level view */
@@ -169,7 +172,7 @@
 /**
  *  Check and create label title view
  */
-- (void) initLabelTitle {
+- (void) _initLabelTitle {
     if (self.titleLabel == nil) {
         self.titleLabelHeight = 25.0f;
         self.padding = 10.0f;
@@ -185,6 +188,29 @@
     }
     [self.titleLabel setFrame:CGRectMake(self.padding, -5, self.frame.size.width, self.titleLabelHeight)];
     [self.titleLabel setText:self.labelTitle];
+}
+
+- (void) _presentOptions {
+    
+    UIAlertController *optionAlert = [UIAlertController alertControllerWithTitle:self.labelTitle message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIPopoverPresentationController *popPresenter = [optionAlert popoverPresentationController];
+    popPresenter.sourceView = self;
+    popPresenter.sourceRect = self.bounds;
+    
+    //Add options
+    for (NSDictionary *item in self.options) {
+        UIAlertAction *action = [UIAlertAction actionWithTitle:item[@"title"] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self.buttonInputTrigger setTitle:action.title forState:UIControlStateNormal];
+            
+            if ([self.delegate respondsToSelector:@selector(SIInput:OptionDidChange:)]) {
+                [self.delegate SIInput:self OptionDidChange:item];
+            }
+        }];
+        [optionAlert addAction:action];
+    }
+    
+    //Present options picker
+    [[self _currentTopViewController] presentViewController:optionAlert animated:YES completion:nil];
 }
 
 /**
@@ -205,7 +231,7 @@
 - (void) setInputType:(SIInputType)inputType {
     _inputType = inputType;
     
-    [self updateKeyboardTypeByInputType];
+    [self _updateKeyboardTypeByInputType];
 }
 
 #pragma mark - Validations
@@ -281,7 +307,7 @@
 -(void)SIDateTimePickerControllerDonePicking:(SIDateTimePickerController *)sender withDate:(NSDate *)date andCountdownDuration:(NSTimeInterval)duration{
     [sender dismissViewControllerAnimated:YES completion:nil];
     //update view
-    [self.buttonInputTrigger setTitle:[self getDisplayDateFromDate:date] forState:UIControlStateNormal];
+    [self.buttonInputTrigger setTitle:[self _getDisplayDateFromDate:date] forState:UIControlStateNormal];
     //update value
     self.dateValue = date;
     self.countdownInterval = duration;
@@ -312,7 +338,7 @@
         
         //set date picker mode
         /* Note: After setting datePickerMode, the countDownDuration will be reset to 60. So set mode before set countdown duration */
-        datePickerController.datePicker.datePickerMode = [self getDatePickerModeByInputType:self.inputType];
+        datePickerController.datePicker.datePickerMode = [self _getDatePickerModeByInputType:self.inputType];
         
         datePickerController.datePicker.date = self.dateValue;
         if (self.inputType == SIInputTypeCountDownTimer) {
@@ -320,13 +346,25 @@
         }
         
         //present popover
-        [[self currentTopViewController] presentViewController:datePickerController animated:YES completion:nil];
+        [[self _currentTopViewController] presentViewController:datePickerController animated:YES completion:nil];
+    }
+    else if(self.inputType == SIInputTypeList) {
+        if ([self.dataSource respondsToSelector:@selector(presentingViewControllerForInput:)]) {
+            SIListController *presentViewController = [self.dataSource presentingViewControllerForInput:self];
+            presentViewController.modalPresentationStyle = UIModalPresentationPopover;
+            presentViewController.popoverPresentationController.sourceView = sender;
+            [[self _currentTopViewController] presentViewController:presentViewController animated:YES completion:nil];
+        }
+    }
+    else if (self.inputType == SIInputTypeOptions) {
+        [self _presentOptions];
     }
 }
 
+
 #pragma mark - Tweak Utils
 
-- (UIViewController *)currentTopViewController
+- (UIViewController *) _currentTopViewController
 {
     UIViewController *topVC = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
     while (topVC.presentedViewController)
@@ -336,9 +374,9 @@
     return topVC;
 }
 
-- (NSString *) getDisplayDateFromDate:(NSDate*)date {
+- (NSString *) _getDisplayDateFromDate:(NSDate*)date {
     if ([self.dateFormat isEqualToString:@""] || self.dateFormat == nil) {
-        self.dateFormat = [self getDefaultDateFormatByInputType:self.inputType];
+        self.dateFormat = [self _getDefaultDateFormatByInputType:self.inputType];
     }
     NSDateFormatter * df = [[NSDateFormatter alloc] init];
     [df setDateFormat:self.dateFormat];
@@ -346,7 +384,7 @@
     return [df stringFromDate:date];
 }
 
-- (NSString *) getDefaultDateFormatByInputType:(SIInputType)type {
+- (NSString *) _getDefaultDateFormatByInputType:(SIInputType)type {
     NSString * dateFormat;
     switch (type) {
         case SIInputTypeTime:
@@ -368,7 +406,7 @@
     return dateFormat;
 }
 
-- (UIDatePickerMode) getDatePickerModeByInputType:(SIInputType)type {
+- (UIDatePickerMode) _getDatePickerModeByInputType:(SIInputType)type {
     UIDatePickerMode mode;
     switch (type) {
         case SIInputTypeTime:

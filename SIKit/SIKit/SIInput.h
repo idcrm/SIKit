@@ -12,6 +12,7 @@
 #import "Validator.h"
 #import "SIInputDelegate.h"
 #import "SIDateTimePickerController.h"
+#import "SIListController.h"
 
 /**
  * Types of input
@@ -29,13 +30,15 @@ typedef enum : NSUInteger {
     SIInputTypeDateAndTime,
     SIInputTypeCountDownTimer,
     SIInputTypeSwitch, //Yes-No UISwitch
-    SIInputTypeList
+    SIInputTypeList,
+    SIInputTypeOptions
 } SIInputType;
 
 
 IB_DESIGNABLE @interface SIInput : UIView<UITextFieldDelegate, SIDateTimePickerControllerDelegate>
 
 @property (strong, nonatomic, nullable) id<SIInputDelegate> delegate;
+@property (strong, nonatomic, nullable) id<SIInputDataSource> dataSource;
 
 /**
  *  Title label to display along with the input to describe what is the input for
@@ -56,6 +59,11 @@ IB_DESIGNABLE @interface SIInput : UIView<UITextFieldDelegate, SIDateTimePickerC
  *  Additional information of the component
  */
 @property (strong, nonatomic, nullable) NSDictionary * info;
+
+/**
+ * Options to pick when type is SIInputTypeOptions
+ */
+@property (strong, nonatomic, nullable) NSArray<NSDictionary*> *options;
 
 /**
  *  Input type

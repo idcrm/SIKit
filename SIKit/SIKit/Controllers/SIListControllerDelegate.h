@@ -11,11 +11,15 @@
 
 #import <Foundation/Foundation.h>
 
+@class SIInput;
 @class SIListController;
 
 @protocol SIListControllerDelegate <NSObject>
 
+@optional
 -(void) listController:(SIListController*)controller didSelectRowAtIndexPath:(NSIndexPath*)indexPath;
+-(void) listController:(SIListController*)controller didSelectItem:(id)item;
+-(UITableViewCell *)listController:(SIListController*)controller cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 
 @end
 
