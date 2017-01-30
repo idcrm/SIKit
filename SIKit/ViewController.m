@@ -32,8 +32,8 @@
     self.listController.delegate = self;
     
     NSMutableArray *list = [NSMutableArray array];
-    for (NSUInteger i = 0; i < 20; i++) {
-        [list addObject:@{@"title" : [NSString stringWithFormat:@"Account %ld", i]}];
+    for (int i = 0; i < 20; i++) {
+        [list addObject:@{@"title" : [NSString stringWithFormat:@"Account %d", i]}];
     }
     self.listController.list = list;
     
