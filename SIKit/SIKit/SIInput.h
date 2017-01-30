@@ -97,6 +97,17 @@ IB_DESIGNABLE @interface SIInput : UIView<UITextFieldDelegate, SIDateTimePickerC
 @property (strong, nonatomic, nullable) IBInspectable UIColor * inputTextColor;
 
 /**
+ *  Action color
+ */
+@property (strong, nonatomic, nullable) IBInspectable UIColor * actionColor;
+
+/**
+ *  Readonly flag
+ */
+@property (assign, nonatomic) BOOL readOnly;
+
+
+/**
  dateFormat
  */
 @property (copy, nonnull) NSString * dateFormat;

@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SIListController">
             <connections>
+                <outlet property="headerView" destination="jOw-3w-f13" id="otf-zw-aHt"/>
                 <outlet property="searchBar" destination="kzG-hp-C77" id="Nyf-MN-Cfx"/>
                 <outlet property="tableView" destination="VqB-ca-1rv" id="p4P-lM-TTz"/>
                 <outlet property="view" destination="iN0-l3-epB" id="YMY-rD-0rb"/>
@@ -29,27 +30,30 @@
                         <outlet property="delegate" destination="-1" id="79q-7C-GLY"/>
                     </connections>
                 </tableView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aNO-f3-Wdr">
-                    <rect key="frame" x="0.0" y="20" width="375" height="30"/>
-                    <state key="normal" title="Button"/>
-                </button>
                 <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="kzG-hp-C77">
                     <rect key="frame" x="0.0" y="50" width="375" height="44"/>
                     <textInputTraits key="textInputTraits"/>
                 </searchBar>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jOw-3w-f13">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="Y4d-Ej-xyV"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="aNO-f3-Wdr" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="2ZE-0r-h2X"/>
+                <constraint firstItem="jOw-3w-f13" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="9JA-nW-vFa"/>
                 <constraint firstItem="VqB-ca-1rv" firstAttribute="top" secondItem="kzG-hp-C77" secondAttribute="bottom" id="ARe-ZX-4Dc"/>
-                <constraint firstItem="kzG-hp-C77" firstAttribute="width" secondItem="aNO-f3-Wdr" secondAttribute="width" id="BMd-TA-Fj5"/>
-                <constraint firstItem="aNO-f3-Wdr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ByV-wB-ucV"/>
-                <constraint firstItem="kzG-hp-C77" firstAttribute="top" secondItem="aNO-f3-Wdr" secondAttribute="bottom" id="C6c-HE-Rx2"/>
+                <constraint firstItem="kzG-hp-C77" firstAttribute="leading" secondItem="jOw-3w-f13" secondAttribute="leading" id="AwT-2y-sej"/>
+                <constraint firstItem="jOw-3w-f13" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="DUz-wk-pdB"/>
                 <constraint firstAttribute="bottom" secondItem="VqB-ca-1rv" secondAttribute="bottom" id="Gq9-Ji-XRK"/>
                 <constraint firstItem="VqB-ca-1rv" firstAttribute="leading" secondItem="kzG-hp-C77" secondAttribute="leading" id="Na0-c6-6z4"/>
+                <constraint firstItem="kzG-hp-C77" firstAttribute="top" secondItem="jOw-3w-f13" secondAttribute="bottom" id="SKm-vg-8fM"/>
                 <constraint firstItem="VqB-ca-1rv" firstAttribute="width" secondItem="kzG-hp-C77" secondAttribute="width" id="WVh-rS-DLD"/>
-                <constraint firstItem="kzG-hp-C77" firstAttribute="leading" secondItem="aNO-f3-Wdr" secondAttribute="leading" id="k9V-pS-raM"/>
-                <constraint firstItem="aNO-f3-Wdr" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="xqK-FA-7RR"/>
+                <constraint firstItem="jOw-3w-f13" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="jFm-uD-ALk"/>
+                <constraint firstItem="kzG-hp-C77" firstAttribute="width" secondItem="jOw-3w-f13" secondAttribute="width" id="qCR-Y0-YAe"/>
             </constraints>
             <point key="canvasLocation" x="25.5" y="52.5"/>
         </view>

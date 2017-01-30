@@ -111,6 +111,14 @@
         [self addSubview:self.inputTextField];
         [self.inputTextField setDelegate:self];
     }
+    
+    if (self.readOnly) {
+        self.inputTextField.userInteractionEnabled = NO;
+    }
+    else {
+        self.inputTextField.userInteractionEnabled = YES;
+    }
+    
     [self.inputTextField setFrame:CGRectMake(self.padding, self.titleLabelHeight + 5, self.frame.size.width, self.frame.size.height - self.titleLabelHeight - 5)];
     [self.inputTextField setText:self.inputValue];
     [self.inputTextField setTextColor:self.inputTextColor];
@@ -121,10 +129,17 @@
 - (void) _initButton {
     if (self.buttonInputTrigger == nil) {
         self.buttonInputTrigger = [UIButton buttonWithType:UIButtonTypeSystem];
-        [self.buttonInputTrigger setTitleColor:self.inputTextColor forState:UIControlStateNormal];
+        [self.buttonInputTrigger setTitleColor:self.actionColor forState:UIControlStateNormal];
         [self.buttonInputTrigger setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
         [self addSubview:self.buttonInputTrigger];
         [self.buttonInputTrigger addTarget:self action:@selector(inputButtonTap:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    if (self.readOnly) {
+        self.buttonInputTrigger.userInteractionEnabled = NO;
+    }
+    else {
+        self.buttonInputTrigger.userInteractionEnabled = YES;
     }
     
     if (self.inputValue) {
@@ -239,6 +254,16 @@
     [self _updateKeyboardTypeByInputType];
 }
 
+-(void)setActionColor:(UIColor *)actionColor {
+    _actionColor = actionColor;
+    [self.buttonInputTrigger setTitleColor:actionColor forState:UIControlStateNormal];
+}
+
+-(void)setReadOnly:(BOOL)readOnly {
+    _readOnly = readOnly;
+    self.inputTextField.userInteractionEnabled = self.buttonInputTrigger.userInteractionEnabled = !readOnly;
+}
+
 #pragma mark - Validations
 /**
  *  Check if the textfield should recieve input and update it base on input type
@@ -331,6 +356,10 @@
 }
 
 - (void) inputButtonTap:(UIButton*)sender {
+    if (self.readOnly) {
+        return;
+    }
+    
     if (self.inputType == SIInputTypeDate ||
         self.inputType == SIInputTypeCountDownTimer ||
         self.inputType == SIInputTypeDateAndTime ||

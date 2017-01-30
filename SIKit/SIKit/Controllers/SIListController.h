@@ -13,6 +13,9 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (strong, nonatomic) IBOutlet UIView *headerView;
+
+@property (strong, nonatomic) id presenter;
 
 @property (strong, nonatomic) NSArray<NSDictionary *> * list;
 

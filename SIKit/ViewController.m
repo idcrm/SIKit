@@ -84,6 +84,9 @@
     [self.inputCountDown setInputType:SIInputTypeCountDownTimer];
     self.inputList.inputType = SIInputTypeList;
     
+    self.inputDate.readOnly    = YES;
+    self.inputInteger.readOnly = YES;
+    
     self.inputOptions.inputType = SIInputTypeOptions;
     self.inputOptions.identifier = @"OptionsIdentifier";
     self.inputOptions.options = @[
@@ -125,7 +128,9 @@
 
 -(void)listController:(SIListController *)controller didSelectItem:(id)item {
     NSLog(@"%@", item);
-    [self.inputList updateInputValue:item[@"title"] andKey:nil];
+    if (controller.presenter && [controller.presenter isKindOfClass:[SIInput class]]) {
+        [((SIInput *)controller.presenter) updateInputValue:item[@"title"] andKey:nil];
+    }
     [controller dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -137,6 +142,7 @@
 -(SIListController *)presentingViewControllerForInput:(SIInput *)input{
     if ([input.identifier isEqualToString:@"myAccountList"]) {
         [self.listController refreshTableView];
+        self.listController.presenter = input;
         return self.listController;
     }
     return nil;

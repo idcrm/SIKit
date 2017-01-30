@@ -18,10 +18,10 @@
 -(void)setTheme:(SIFormThemeManager *)theme {
     _theme = theme;
     
-//    self.verticalIndicator.backgroundColor = theme.requiredIndicatorColor;
-//    self.titleLabel.font                   = theme.font;
-//    self.titleLabel.textColor              = theme.displayColor;
-//    self.btnValue.titleLabel.textColor     = theme.actionColor;
+    self.input.requiredLevelColor   = theme.requiredIndicatorColor;
+    self.input.titleLabel.font      = theme.font;
+    self.input.titleLabel.textColor = theme.displayColor;
+    self.input.actionColor          = theme.actionColor;
 }
 
 @end
