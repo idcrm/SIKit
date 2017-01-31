@@ -61,6 +61,7 @@
 		B4249B131C86D3F9006A6F13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4249B201C86F6E8006A6F13 /* SIInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIInput.h; sourceTree = "<group>"; };
 		B4249B211C86F6E8006A6F13 /* SIInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIInput.m; sourceTree = "<group>"; };
+		B43B2D691E4065C40017C07C /* SIKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SIKit.h; sourceTree = "<group>"; };
 		B457007C1CE068F700837EEE /* SIFormThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIFormThemeManager.h; sourceTree = "<group>"; };
 		B457007D1CE068F700837EEE /* SIFormThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIFormThemeManager.m; sourceTree = "<group>"; };
 		B4A3C37B1CEDBD660079BED4 /* SIListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIListController.h; sourceTree = "<group>"; };
@@ -175,6 +176,7 @@
 				B457007C1CE068F700837EEE /* SIFormThemeManager.h */,
 				B457007D1CE068F700837EEE /* SIFormThemeManager.m */,
 				B4D7C8701CE33320000E1792 /* SIInputDelegate.h */,
+				B43B2D691E4065C40017C07C /* SIKit.h */,
 			);
 			path = SIKit;
 			sourceTree = "<group>";

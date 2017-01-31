@@ -25,6 +25,6 @@ Pod::Spec.new do |s|
 
   s.source_files  = "SIKit", "SIKit/SIKit/**/*.{h,m}"
 
-  s.public_header_files = "SIKit/**/*.h"
+  s.public_header_files = "SIKit/SIKit/**/*.h"
 
 end
