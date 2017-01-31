@@ -12,7 +12,7 @@
 
 @interface SIInputCell : UICollectionViewCell
 
-@property (nonatomic, strong) IBOutlet SIInput *input;
+@property (nonatomic, strong) SIInput *input;
 @property (nonatomic, strong) SIFormThemeManager *theme;
 
 @end

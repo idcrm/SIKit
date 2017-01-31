@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "SIKit"
-  s.version      = "0.1.0"
+  s.version      = "0.1.1"
   s.summary      = "Simple interface form control"
 
   s.homepage     = "https://github.com/khemarin/SIKit"

@@ -15,6 +15,31 @@
     // Initialization code
 }
 
+-(instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.contentView.backgroundColor = [UIColor whiteColor];
+        [self _setupInput];
+        [self _setupConstraints];
+    }
+    return self;
+}
+
+- (void) _setupInput {
+    self.input = [[SIInput alloc] initWithFrame:self.bounds];
+    self.input.backgroundColor = [UIColor whiteColor];
+    [self.contentView addSubview:self.input];
+}
+
+- (void) _setupConstraints {
+    [self.input.leftAnchor constraintEqualToAnchor:self.contentView.leftAnchor].active = YES;
+    [self.input.topAnchor constraintEqualToAnchor:self.contentView.topAnchor].active = YES;
+    [self.input.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor].active = YES;
+    [self.input.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor].active = YES;
+    
+    [self setNeedsLayout];
+}
+
 -(void)setTheme:(SIFormThemeManager *)theme {
     _theme = theme;
     

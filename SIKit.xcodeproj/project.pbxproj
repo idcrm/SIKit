@@ -20,7 +20,6 @@
 		B457007E1CE068F700837EEE /* SIFormThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B457007D1CE068F700837EEE /* SIFormThemeManager.m */; };
 		B4A3C37D1CEDBD660079BED4 /* SIListController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A3C37C1CEDBD660079BED4 /* SIListController.m */; };
 		B4A6187F1E39D5F700B449F7 /* SIInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A6187D1E39D5F700B449F7 /* SIInputCell.m */; };
-		B4A618801E39D5F700B449F7 /* SIInputCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4A6187E1E39D5F700B449F7 /* SIInputCell.xib */; };
 		B4BC4E811CEC5ACE009FF87F /* SIDateTimePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BC4E801CEC5ACD009FF87F /* SIDateTimePickerController.m */; };
 		B4C96A861CE976A5002BC4A0 /* Validator.m in Sources */ = {isa = PBXBuildFile; fileRef = B4C96A851CE976A5002BC4A0 /* Validator.m */; };
 /* End PBXBuildFile section */
@@ -69,7 +68,6 @@
 		B4A3C37E1CEDBD7F0079BED4 /* SIListControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SIListControllerDelegate.h; sourceTree = "<group>"; };
 		B4A6187C1E39D5F700B449F7 /* SIInputCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIInputCell.h; sourceTree = "<group>"; };
 		B4A6187D1E39D5F700B449F7 /* SIInputCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIInputCell.m; sourceTree = "<group>"; };
-		B4A6187E1E39D5F700B449F7 /* SIInputCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SIInputCell.xib; sourceTree = "<group>"; };
 		B4BC4E7F1CEC5ACD009FF87F /* SIDateTimePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIDateTimePickerController.h; sourceTree = "<group>"; };
 		B4BC4E801CEC5ACD009FF87F /* SIDateTimePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIDateTimePickerController.m; sourceTree = "<group>"; };
 		B4BC4E821CEC5C2D009FF87F /* SIDateTimePickerControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIDateTimePickerControllerDelegate.h; sourceTree = "<group>"; };
@@ -186,7 +184,6 @@
 			children = (
 				B4A6187C1E39D5F700B449F7 /* SIInputCell.h */,
 				B4A6187D1E39D5F700B449F7 /* SIInputCell.m */,
-				B4A6187E1E39D5F700B449F7 /* SIInputCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -322,7 +319,6 @@
 				B4249AF91C86D3F9006A6F13 /* Assets.xcassets in Resources */,
 				B4249AF71C86D3F9006A6F13 /* Main.storyboard in Resources */,
 				B40DFE181E38907500CC3BFD /* SIListController.xib in Resources */,
-				B4A618801E39D5F700B449F7 /* SIInputCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

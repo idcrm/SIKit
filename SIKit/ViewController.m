@@ -27,6 +27,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.theme = [[SIFormThemeManager alloc] init];
+    self.formCollectionView.backgroundColor = [UIColor clearColor];
     
     self.listController = [[SIListController alloc] init];
     self.listController.delegate = self;
@@ -67,7 +68,7 @@
                            },
                        ];
     
-    [self.formCollectionView registerNib:[UINib nibWithNibName:@"SIInputCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"SIInputCell"];
+    [self.formCollectionView registerClass:[SIInputCell class] forCellWithReuseIdentifier:@"SIInputCell"];
     [self.formCollectionView reloadData];
 }
 
@@ -172,6 +173,7 @@
 -(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     SIInputCell * cell = (SIInputCell*)[collectionView dequeueReusableCellWithReuseIdentifier:@"SIInputCell" forIndexPath:indexPath];
     
+    
     NSDictionary *option  = self.formModel[indexPath.row];
     
     cell.input.inputType  = [option[@"Type"] integerValue];
@@ -205,8 +207,6 @@
         default:
             break;
     }
-    
-    
     
     return cell;
 }

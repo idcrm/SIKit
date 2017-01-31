@@ -56,6 +56,7 @@
     if (self) {
         self.labelTitle = @"Label";
         self.inputTextColor = [UIColor blackColor];
+        self.actionColor    = [UIColor blueColor];
     }
     
     return self;
@@ -127,6 +128,9 @@
 }
 
 - (void) _initButton {
+    if (!self.actionColor) {
+        self.actionColor = [UIColor blueColor];
+    }
     if (self.buttonInputTrigger == nil) {
         self.buttonInputTrigger = [UIButton buttonWithType:UIButtonTypeSystem];
         [self.buttonInputTrigger setTitleColor:self.actionColor forState:UIControlStateNormal];
