@@ -32,10 +32,10 @@
 }
 
 - (void) _setupConstraints {
-    [self.input.leftAnchor constraintEqualToAnchor:self.contentView.leftAnchor].active = YES;
-    [self.input.topAnchor constraintEqualToAnchor:self.contentView.topAnchor].active = YES;
-    [self.input.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor].active = YES;
-    [self.input.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor].active = YES;
+    [self.input.leftAnchor constraintEqualToAnchor:self.contentView.leftAnchor constant:4.0f].active = YES;
+    [self.input.topAnchor constraintEqualToAnchor:self.contentView.topAnchor constant:4.0f].active = YES;
+    [self.input.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor constant:4.0f].active = YES;
+    [self.input.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor constant:4.0f].active = YES;
     
     [self setNeedsLayout];
 }
