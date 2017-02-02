@@ -23,9 +23,9 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/khemarin/SIKit.git", :tag => "0.1.3"}
 
 
-  s.source_files  = "SIKit", "SIKit/SIKit/**/*.{h,m}"
+  s.source_files  = "SIKit/SIKit/**/*.{h,m}"
   s.resource_bundle = {"SIKit" => "SIKit/SIKit/**/*.{xib,storyboard}"}
 
-  s.public_header_files = "SIKit/SIKit/**/*.h"
+  s.public_header_files = "SIKit/SIKit/SIKit.h", "SIKit/SIKit/**/*.h"
 
 end

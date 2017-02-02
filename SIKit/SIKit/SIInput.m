@@ -30,6 +30,11 @@
  */
 @property (strong, nonatomic) UIButton * buttonInputTrigger;
 
+/**
+ Switch option
+ */
+@property (strong, nonatomic) UISegmentedControl * segmentOption;
+
 
 /**
  *  Input value of date
@@ -41,6 +46,16 @@
  */
 @property (assign, nonatomic) NSTimeInterval countdownInterval;
 
+/**
+ Space between label and input control
+ */
+@property (assign) float lineSpacing;
+
+
+/**
+ Frame of input control
+ */
+@property (nonatomic) CGRect controlFrame;
 
 /**
  *  Edge inset from border to inner elements
@@ -51,12 +66,14 @@
 
 @implementation SIInput
 
-- (instancetype)init {
-    self = [super init];
+- (instancetype) initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
     if (self) {
         self.labelTitle = @"Label";
         self.inputTextColor = [UIColor blackColor];
         self.actionColor    = [UIColor blueColor];
+        self.dateValue      = [NSDate date];
+        
     }
     
     return self;
@@ -65,6 +82,7 @@
 -(void)awakeFromNib {
     [super awakeFromNib];
     //Add touch gesture to auto focus on text input
+    
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selfTap:)];
     tap.numberOfTapsRequired = 1;
     [self addGestureRecognizer:tap];
@@ -72,12 +90,22 @@
     self.dateValue = [NSDate date];
 }
 
+- (void) updateFrames {
+    self.controlFrame = CGRectMake(self.padding, self.titleLabelHeight + self.lineSpacing, self.frame.size.width, self.frame.size.height - self.titleLabelHeight - self.lineSpacing);
+}
+
 - (void)drawRect:(CGRect)rect {
+    self.padding = 10.0f;
+    self.lineSpacing    = 2.0f;
+    
     // Update required level color
     [self _initRequiredView];
     
     //Update label
     [self _initLabelTitle];
+    
+    //Update control frames
+    [self updateFrames];
     
     switch (self.inputType) {
         case SIInputTypeURL:
@@ -99,12 +127,28 @@
         case SIInputTypeOptions:
             [self _initButton];
             break;
+        case SIInputTypeSegment:
+            [self _initSegment];
+            break;
         default:
             break;
     }
 }
 
 #pragma mark - Update view
+
+- (void) _initSegment {
+    if (self.segmentOption == nil) {
+        self.segmentOption = [[UISegmentedControl alloc] initWithFrame:self.controlFrame];
+        self.segmentOption.tintColor = self.actionColor;
+        [self addSubview:self.segmentOption];
+    }
+    
+    unsigned long maxSegments = MIN([self.options count], 3);
+    for (int i = 0; i < maxSegments; i++) {
+        [self.segmentOption insertSegmentWithTitle:self.options[i][@"title"] atIndex:i animated:NO];
+    }
+}
 
 - (void) _initTextbox {
     if (self.inputTextField == nil) {
@@ -120,7 +164,7 @@
         self.inputTextField.userInteractionEnabled = YES;
     }
     
-    [self.inputTextField setFrame:CGRectMake(self.padding, self.titleLabelHeight + 5, self.frame.size.width, self.frame.size.height - self.titleLabelHeight - 5)];
+    [self.inputTextField setFrame:self.controlFrame];
     [self.inputTextField setText:self.inputValue];
     [self.inputTextField setTextColor:self.inputTextColor];
     [self.inputTextField setReturnKeyType:UIReturnKeyDone];
@@ -150,7 +194,7 @@
         [self.buttonInputTrigger setTitle:self.inputValue forState:UIControlStateNormal];
     }
     
-    [self.buttonInputTrigger setFrame:CGRectMake(self.padding, self.titleLabelHeight + 5, self.frame.size.width, self.frame.size.height - self.titleLabelHeight - 5)];
+    [self.buttonInputTrigger setFrame:self.controlFrame];
 }
 
 - (void) _updateKeyboardTypeByInputType {
@@ -199,7 +243,6 @@
 - (void) _initLabelTitle {
     if (self.titleLabel == nil) {
         self.titleLabelHeight = 25.0f;
-        self.padding = 10.0f;
         /* Initialize and add required level view */
         self.titleLabel = [[UILabel alloc] init];
         [self.titleLabel setTextColor:[UIColor blackColor]];
@@ -256,6 +299,24 @@
     _inputType = inputType;
     
     [self _updateKeyboardTypeByInputType];
+}
+
+-(void)setInputValue:(NSString *)inputValue {
+    _inputValue = inputValue;
+    
+    if (self.inputType == SIInputTypeDate ||
+        self.inputType == SIInputTypeDateAndTime ||
+        self.inputType == SIInputTypeTime ||
+        self.inputType == SIInputTypeCountDownTimer) {
+        
+        if ([self.dateFormat isEqualToString:@""] || self.dateFormat == nil) {
+            self.dateFormat = [self _getDefaultDateFormatByInputType:self.inputType];
+        }
+        NSDateFormatter * df = [[NSDateFormatter alloc] init];
+        [df setDateFormat:self.dateFormat];
+        
+        self.dateValue = [df dateFromString:self.inputValue];
+    }
 }
 
 -(void)setActionColor:(UIColor *)actionColor {

@@ -210,6 +210,17 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="NGE-C1-Lhc"/>
                                 </connections>
                             </collectionView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fk4-Pi-NBW" customClass="SIInput">
+                                <rect key="frame" x="304" y="448" width="240" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="labelTitle" value="Segment"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="requiredLevelColor">
+                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -266,6 +277,7 @@
                         <outlet property="inputOptions" destination="x33-27-j6f" id="Zch-Lu-Z4z"/>
                         <outlet property="inputPassword" destination="9XI-P6-a8M" id="FZO-F1-g9M"/>
                         <outlet property="inputPhone" destination="KGN-6G-che" id="GyF-SQ-C4F"/>
+                        <outlet property="inputSegment" destination="fk4-Pi-NBW" id="jfd-oo-Yzf"/>
                         <outlet property="inputText" destination="844-PD-b1z" id="XWb-bd-aFt"/>
                         <outlet property="inputTime" destination="DkS-AC-AgO" id="Tm7-9o-EO6"/>
                         <outlet property="inputUrl" destination="gkl-8o-TN2" id="Li9-NX-aKK"/>

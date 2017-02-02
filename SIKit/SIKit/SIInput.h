@@ -29,7 +29,7 @@ typedef enum : NSUInteger {
     SIInputTypeDate,
     SIInputTypeDateAndTime,
     SIInputTypeCountDownTimer,
-    SIInputTypeSwitch, //Yes-No UISwitch
+    SIInputTypeSegment, //Yes-No Segment
     SIInputTypeList,
     SIInputTypeOptions
 } SIInputType;
@@ -61,7 +61,7 @@ IB_DESIGNABLE @interface SIInput : UIView<UITextFieldDelegate, SIDateTimePickerC
 @property (strong, nonatomic, nullable) NSDictionary * info;
 
 /**
- * Options to pick when type is SIInputTypeOptions
+ * Options to pick when type is SIInputTypeOptions. Dictionary must contain key 'title' to display
  */
 @property (strong, nonatomic, nullable) NSArray<NSDictionary*> *options;
 

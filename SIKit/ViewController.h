@@ -24,7 +24,7 @@
 @property (strong, nonatomic) IBOutlet SIInput *inputTime;
 @property (strong, nonatomic) IBOutlet SIInput *inputList;
 @property (strong, nonatomic) IBOutlet SIInput *inputOptions;
-
+@property (strong, nonatomic) IBOutlet SIInput *inputSegment;
 
 @end
 

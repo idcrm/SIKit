@@ -7,9 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "SIFormThemeManager.h"
-#import "SIInputCell.h"
-#import "SIListController.h"
+#import "SIKit/SIKit.h"
 
 @interface ViewController ()<SIListControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -84,9 +82,12 @@
     [self.inputDateTime setInputType:SIInputTypeDateAndTime];
     [self.inputCountDown setInputType:SIInputTypeCountDownTimer];
     self.inputList.inputType = SIInputTypeList;
+    self.inputSegment.inputType = SIInputTypeSegment;
+    self.inputSegment.options = @[@{@"title" : @"Yellow"}, @{@"title": @"Blue"}];
     
-    self.inputDate.readOnly    = YES;
     self.inputInteger.readOnly = YES;
+    
+    self.inputDate.inputValue = @"2017-01-01";
     
     self.inputOptions.inputType = SIInputTypeOptions;
     self.inputOptions.identifier = @"OptionsIdentifier";
