@@ -84,6 +84,7 @@
     self.inputList.inputType = SIInputTypeList;
     self.inputSegment.inputType = SIInputTypeSegment;
     self.inputSegment.options = @[@{@"title" : @"Yellow"}, @{@"title": @"Blue"}];
+    [self.inputSegment setInputControlFrame:CGRectMake(10, 20, 120, 30)];
     
     self.inputInteger.readOnly = YES;
     
@@ -168,7 +169,7 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView
                   layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(300, 60);
+    return CGSizeMake(300, 40);
 }
 
 -(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {

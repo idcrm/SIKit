@@ -96,7 +96,7 @@
 
 - (void)drawRect:(CGRect)rect {
     self.padding = 10.0f;
-    self.lineSpacing    = 2.0f;
+    self.lineSpacing    = 0.0f;
     
     // Update required level color
     [self _initRequiredView];
@@ -105,7 +105,9 @@
     [self _initLabelTitle];
     
     //Update control frames
-    [self updateFrames];
+    if (CGRectEqualToRect(self.controlFrame, CGRectZero)) {
+        [self updateFrames];
+    }
     
     switch (self.inputType) {
         case SIInputTypeURL:
@@ -139,15 +141,17 @@
 
 - (void) _initSegment {
     if (self.segmentOption == nil) {
-        self.segmentOption = [[UISegmentedControl alloc] initWithFrame:self.controlFrame];
+        self.segmentOption = [[UISegmentedControl alloc] init];
         self.segmentOption.tintColor = self.actionColor;
         [self addSubview:self.segmentOption];
+        
+        unsigned long maxSegments = MIN([self.options count], 3);
+        for (int i = 0; i < maxSegments; i++) {
+            [self.segmentOption insertSegmentWithTitle:self.options[i][@"title"] atIndex:i animated:NO];
+        }
     }
     
-    unsigned long maxSegments = MIN([self.options count], 3);
-    for (int i = 0; i < maxSegments; i++) {
-        [self.segmentOption insertSegmentWithTitle:self.options[i][@"title"] atIndex:i animated:NO];
-    }
+    [self.segmentOption setFrame:self.controlFrame];
 }
 
 - (void) _initTextbox {
@@ -532,6 +536,34 @@
     self.inputKey = key;
     
     [self setNeedsDisplay];
+}
+
+-(void)setInputControlFrame:(CGRect)frame {
+    self.controlFrame = frame;
+    switch (self.inputType) {
+        case SIInputTypeURL:
+        case SIInputTypeText:
+        case SIInputTypeEmail:
+        case SIInputTypePhone:
+        case SIInputTypeInteger:
+        case SIInputTypeDouble:
+        case SIInputTypePassword:
+            [self _initTextbox];
+            break;
+        case SIInputTypeDate:
+        case SIInputTypeDateAndTime:
+        case SIInputTypeCountDownTimer:
+        case SIInputTypeTime:
+        case SIInputTypeList:
+        case SIInputTypeOptions:
+            [self _initButton];
+            break;
+        case SIInputTypeSegment:
+            [self _initSegment];
+            break;
+        default:
+            break;
+    }
 }
 
 @end

@@ -120,4 +120,12 @@ IB_DESIGNABLE @interface SIInput : UIView<UITextFieldDelegate, SIDateTimePickerC
  */
 - (void) updateInputValue:(NSString * _Nonnull)value andKey:(NSString * _Nullable)key;
 
+
+/**
+ Use to update input control frame
+
+ @param frame control input's frame
+ */
+- (void) setInputControlFrame:(CGRect)frame;
+
 @end
