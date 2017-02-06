@@ -14,5 +14,6 @@
 
 @property (nonatomic, strong) SIInput *input;
 @property (nonatomic, strong) SIFormThemeManager *theme;
+@property (nonatomic, assign) float padding;
 
 @end

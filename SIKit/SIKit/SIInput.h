@@ -112,6 +112,12 @@ IB_DESIGNABLE @interface SIInput : UIView<UITextFieldDelegate, SIDateTimePickerC
  */
 @property (copy, nonnull) NSString * dateFormat;
 
+
+/**
+ An accessory view on the right of control
+ */
+@property (strong, nonatomic, nullable) UIButton *accessoryButton;
+
 /**
  Update the key/value of the input
 

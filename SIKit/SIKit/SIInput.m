@@ -73,7 +73,6 @@
         self.inputTextColor = [UIColor blackColor];
         self.actionColor    = [UIColor blueColor];
         self.dateValue      = [NSDate date];
-        
     }
     
     return self;
@@ -91,18 +90,26 @@
 }
 
 - (void) updateFrames {
-    self.controlFrame = CGRectMake(self.padding, self.titleLabelHeight + self.lineSpacing, self.frame.size.width, self.frame.size.height - self.titleLabelHeight - self.lineSpacing);
+    float w = self.frame.size.width;
+    if (self.accessoryButton) {
+        w -= self.accessoryButton.bounds.size.width - 5.0f;
+    }
+    self.controlFrame = CGRectMake(self.padding, self.titleLabelHeight + self.lineSpacing, w, self.frame.size.height - self.titleLabelHeight - self.lineSpacing);
 }
 
 - (void)drawRect:(CGRect)rect {
-    self.padding = 10.0f;
-    self.lineSpacing    = 0.0f;
+    self.padding = 5.0f;
+    self.lineSpacing = 0.0f;
     
     // Update required level color
     [self _initRequiredView];
     
     //Update label
     [self _initLabelTitle];
+    
+    if (self.accessoryButton) {
+        [self.accessoryButton setFrame:CGRectMake(self.bounds.size.width - 30 - self.padding, self.padding, 20, 20)];
+    }
     
     //Update control frames
     if (CGRectEqualToRect(self.controlFrame, CGRectZero)) {
@@ -160,7 +167,7 @@
         [self addSubview:self.inputTextField];
         [self.inputTextField setDelegate:self];
     }
-    
+
     if (self.readOnly) {
         self.inputTextField.userInteractionEnabled = NO;
     }
@@ -246,7 +253,7 @@
  */
 - (void) _initLabelTitle {
     if (self.titleLabel == nil) {
-        self.titleLabelHeight = 25.0f;
+        self.titleLabelHeight = 15.0f;
         /* Initialize and add required level view */
         self.titleLabel = [[UILabel alloc] init];
         [self.titleLabel setTextColor:[UIColor blackColor]];
@@ -257,8 +264,11 @@
         [self addSubview:self.titleLabel];
         self.titleLabel.userInteractionEnabled = NO;
     }
-    [self.titleLabel setFrame:CGRectMake(self.padding, -5, self.frame.size.width, self.titleLabelHeight)];
+    [self.titleLabel setFrame:CGRectMake(self.padding, -2, self.frame.size.width, self.titleLabelHeight)];
     [self.titleLabel setText:self.labelTitle];
+    
+    [self.titleLabel sizeToFit];
+    self.titleLabelHeight = self.titleLabel.frame.size.height;
 }
 
 - (void) _presentOptions {
@@ -282,6 +292,23 @@
     
     //Present options picker
     [[self _currentTopViewController] presentViewController:optionAlert animated:YES completion:nil];
+}
+
+-(void)setAccessoryButton:(UIButton *)accessoryButton {
+    if (accessoryButton) {
+        _accessoryButton = accessoryButton;
+        [self addSubview:self.accessoryButton];
+        [self.accessoryButton setFrame:CGRectMake(self.bounds.size.width - 30 - self.padding, self.padding, 30, 30)];
+        
+        [self.accessoryButton addTarget:self action:@selector(accessoryButtoinDidTap) forControlEvents:UIControlEventTouchUpInside];
+    }
+    else {
+        [_accessoryButton removeTarget:self action:@selector(accessoryButtoinDidTap) forControlEvents:UIControlEventTouchUpInside];
+        
+        [_accessoryButton removeFromSuperview];
+        _accessoryButton = nil;
+    }
+    
 }
 
 /**
@@ -331,6 +358,14 @@
 -(void)setReadOnly:(BOOL)readOnly {
     _readOnly = readOnly;
     self.inputTextField.userInteractionEnabled = self.buttonInputTrigger.userInteractionEnabled = !readOnly;
+}
+
+#pragma mark - Action
+
+- (void) accessoryButtoinDidTap {
+    if ([self.delegate respondsToSelector:@selector(SIInputAccessoryButtonTouch:)]) {
+        [self.delegate SIInputAccessoryButtonTouch:self];
+    }
 }
 
 #pragma mark - Validations

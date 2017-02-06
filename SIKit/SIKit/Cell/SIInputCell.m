@@ -8,6 +8,15 @@
 
 #import "SIInputCell.h"
 
+@interface SIInputCell()
+
+@property (nonatomic, strong) NSLayoutConstraint *trailing;
+@property (nonatomic, strong) NSLayoutConstraint *leading;
+@property (nonatomic, strong) NSLayoutConstraint *top;
+@property (nonatomic, strong) NSLayoutConstraint *bottom;
+
+@end
+
 @implementation SIInputCell
 
 - (void)awakeFromNib {
@@ -18,27 +27,60 @@
 -(instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.contentView.backgroundColor = [UIColor whiteColor];
         [self _setupInput];
-        [self _setupConstraints];
     }
     return self;
 }
 
 - (void) _setupInput {
-    self.input = [[SIInput alloc] initWithFrame:self.bounds];
+    self.input = [[SIInput alloc] init];
     self.input.backgroundColor = [UIColor whiteColor];
     [self.contentView addSubview:self.input];
+    
+    [self.input setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
+    [self setupConstraints];
 }
 
-- (void) _setupConstraints {
-    [self.input.leftAnchor constraintEqualToAnchor:self.contentView.leftAnchor constant:4.0f].active = YES;
-    [self.input.topAnchor constraintEqualToAnchor:self.contentView.topAnchor constant:4.0f].active = YES;
-    [self.input.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor constant:4.0f].active = YES;
-    [self.input.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor constant:4.0f].active = YES;
+- (void) setupConstraints {
+    self.top = [self.input.topAnchor constraintEqualToAnchor:self.contentView.topAnchor constant:self.padding];
+    self.leading = [self.input.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor constant:self.padding];
+    self.trailing = [self.input.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor constant:(-1 * self.padding)];
+    self.bottom = [self.input.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor constant:(-1 * self.padding)];
     
-    [self setNeedsLayout];
+    self.top.active      = YES;
+    self.leading.active  = YES;
+    self.trailing.active = YES;
+    self.bottom.active   = YES;
 }
+
+-(void)updateConstraints {
+    //Disable
+    self.top.active      = NO;
+    self.leading.active  = NO;
+    self.trailing.active = NO;
+    self.bottom.active   = NO;
+    
+    self.top.constant      = self.padding;
+    self.leading.constant  = self.padding;
+    self.trailing.constant = -1 * self.padding;
+    self.bottom.constant   = -1 * self.padding;
+    
+    self.top.active      = YES;
+    self.leading.active  = YES;
+    self.trailing.active = YES;
+    self.bottom.active   = YES;
+    
+    [super updateConstraints];
+    [self.input setNeedsDisplay];
+}
+
+-(void)setPadding:(float)padding {
+    _padding = padding;
+    
+    [self setNeedsUpdateConstraints];
+}
+
 
 -(void)setTheme:(SIFormThemeManager *)theme {
     _theme = theme;

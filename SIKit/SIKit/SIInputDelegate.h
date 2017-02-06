@@ -39,6 +39,8 @@
 
 -(void) SIInput:(SIInput *)input OptionDidChange:(NSDictionary*)option;
 
+- (void) SIInputAccessoryButtonTouch:(SIInput*)input;
+
 
 @end
 

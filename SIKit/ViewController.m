@@ -155,6 +155,10 @@
     NSLog(@"Input: %@, option: %@", input.identifier, option);
 }
 
+-(void)SIInputAccessoryButtonTouch:(SIInput *)input {
+    NSLog(@"Input: %@", input.identifier);
+}
+
 #pragma mark - CollectionView Delegate/DataSource
 
 
@@ -169,7 +173,7 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView
                   layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(300, 40);
+    return CGSizeMake(200, 40);
 }
 
 -(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -182,6 +186,8 @@
     cell.input.labelTitle = option[@"Label"];
     cell.input.identifier = option[@"Identifier"];
     [cell.input updateInputValue:option[@"Value"] andKey:nil];
+    
+    cell.padding = 4.0f;
     
     BOOL required = [option[@"Required"] boolValue];
     BOOL readOnly = [option[@"ReadOnly"] boolValue];
@@ -200,12 +206,16 @@
     cell.input.delegate = self;
     cell.input.dataSource = self;
     
+    UIButton *informationButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    [informationButton setTintColor:[UIColor blueColor]];
+    
     //Options
     switch (cell.input.inputType) {
         case SIInputTypeOptions:
             cell.input.options = option[@"Options"];
             break;
         case SIInputTypeList:
+            cell.input.accessoryButton = informationButton;
         default:
             break;
     }
