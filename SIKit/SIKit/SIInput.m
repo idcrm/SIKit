@@ -504,12 +504,7 @@
 
 - (UIViewController *) _currentTopViewController
 {
-    UIViewController *topVC = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
-    while (topVC.presentedViewController)
-    {
-        topVC = topVC.presentedViewController;
-    }
-    return topVC;
+    return self.owningViewController;
 }
 
 - (NSString *) _getDisplayDateFromDate:(NSDate*)date {

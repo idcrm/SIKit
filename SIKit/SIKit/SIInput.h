@@ -37,8 +37,14 @@ typedef enum : NSUInteger {
 
 IB_DESIGNABLE @interface SIInput : UIView<UITextFieldDelegate, SIDateTimePickerControllerDelegate>
 
-@property (strong, nonatomic, nullable) id<SIInputDelegate> delegate;
-@property (strong, nonatomic, nullable) id<SIInputDataSource> dataSource;
+@property (weak, nonatomic, nullable) id<SIInputDelegate> delegate;
+@property (weak, nonatomic, nullable) id<SIInputDataSource> dataSource;
+
+
+/**
+ A view controller that input is in
+ */
+@property (weak, nonatomic, nullable) UIViewController *owningViewController;
 
 /**
  *  Title label to display along with the input to describe what is the input for
